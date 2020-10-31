@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <windows.h>
 
 #include "kartu41.h"
 #include "../extras/extra.h"
@@ -8,60 +9,39 @@ void kartu41TitleCard(int skip_wait = 0)
 	printf("\n/ $$   /$$ /$$$$$$  /$$$$$$$  /$$$$$$$$ /$$   /$$       /$$   /$$   /$$\n");
 	if (!skip_wait)
 	{
-		for (int i = 0; i < 300000000; i++)
-		{
-			;
-		}
+		Sleep(250);
 	}
 	printf("| $$  /$$ /$$__  $$| $$__  $$|__  $$__/| $$  | $$      | $$  | $$ /$$$$\n");
 	if (!skip_wait)
 	{
-		for (int i = 0; i < 30000000; i++)
-		{
-			;
-		}
+		Sleep(250);
 	}
-	printf("| $$ /$$/| $$   \\$$| $$  \\ $$    | $$   | $$  | $$      | $$  | $$|_  $$\n");
+  printf("| $$ /$$/| $$   \\$$| $$  \\$$    | $$   | $$  | $$      | $$  | $$|_  $$\n");
 	if (!skip_wait)
 	{
-		for (int i = 0; i < 100000000; i++)
-		{
-			;
-		}
+		Sleep(250);
 	}
 	printf("| $$$$$/ | $$$$$$$$| $$$$$$$/   | $$   | $$  | $$      | $$$$$$$$  | $$\n");
 	if (!skip_wait)
 	{
-		for (int i = 0; i < 100000000; i++)
-		{
-			;
-		}
+		Sleep(250);
 	}
 	printf("| $$  $$ | $$__  $$| $$__  $$   | $$   | $$  | $$      |_____  $$  | $$\n");
 	if (!skip_wait)
 	{
-		for (int i = 0; i < 100000000; i++)
-		{
-			;
-		}
+		Sleep(250);
 	}
-	printf("| $$\\  $$| $$  | $$| $$  \\ $$    | $$   | $$  | $$            | $$  | $$\n");
+	printf("| $$\\  $$| $$  | $$| $$  \\$$    | $$   | $$  | $$            | $$  | $$\n");
 	if (!skip_wait)
 	{
-		for (int i = 0; i < 100000000; i++)
-		{
-			;
-		}
+		Sleep(250);
 	}
-	printf("| $$ \\ $$| $$  | $$| $$  | $$   | $$   |  $$$$$$/            | $$ /$$$$$$\n");
+	printf("| $$ \\$$ | $$  | $$| $$  | $$   | $$   |  $$$$$$/            | $$ /$$$$$$\n");
 	if (!skip_wait)
 	{
-		for (int i = 0; i < 100000000; i++)
-		{
-			;
-		}
+		Sleep(250);
 	}
-	printf("|__/  \\__/|__/ |__/|__/  |__/   |__/     \\______/             |__/|______/\n");
+  printf("|__/  \\__/|__/ |__/|__/  |__/   |__/    \\______/             |__/|______/\n");
 }
 
 void howToPlay()
@@ -125,18 +105,28 @@ int kartu41_game()
 		printf("\t2. How to Play\n");
 		printf("\t3. Exit\n");
 
+		int do_break_loop = 0;
 		int gameCursor = -1;
 		while (gameCursor == -1)
 		{
+			int inp = 0;
 			printf("\tMasukan angka: ");
-			scanf("%d", &gameCursor);
-			switch (gameCursor)
+        	scanf("%[^\n]", &inp);
+			getchar();
+			inp -= 48;
+#ifdef DEBUGGAME
+        	printf("\nUser input for menu: %d\n", inp);
+#endif
+			switch (inp)
 			{
 			case 1:
+				gameCursor = 1;
 				break;
 			case 2:
+				gameCursor = 2;
 				break;
 			case 3:
+				gameCursor = 3;
 				do_exit = 1;
 				break;
 			default:
@@ -170,7 +160,6 @@ int kartu41_game()
 			aimOfTheGame();
 			printf("\nEnter untuk selesai.");
 			getchar();
-			scanf("%c", &trash);
 			after_tut = 1;
 			break;
 		}

@@ -7,7 +7,6 @@
 #include <conio.h>
 #else
 #include <ncurses.h>
-#include "../extras/unix_support.h"
 #endif
 
 #include "flappygame.h"
@@ -82,17 +81,37 @@ int flappy_bird()
 		for (int i = 0; i < 30; i++)
 		{
 			if (i == 0)
+#ifdef FALLBACKASCII
 				printf("%c", char(201));
+#else
+				printf("╔");
+#endif
 			else if (i == 29)
+#ifdef FALLBACKASCII
 				printf("%c", char(187));
+#else
+				printf("╗");
+#endif
 			else
+#ifdef FALLBACKASCII
 				printf("%c", char(205));
+#else
+				printf("═");
+#endif
 		}
 		puts("");
+#ifdef FALLBACKASCII
 		printf("                       %c                            %c\n", char(186), char(186));
+#else
+		printf("                       ║                            ║\n");
+#endif
 		for (int i = 0; i < 3; i++)
 		{
+#ifdef FALLBACKASCII
 			printf("                       %c   ", char(186));
+#else
+			printf("                       ║   ");
+#endif
 			if (currPos == i)
 				printf(">>   ");
 			else
@@ -106,19 +125,40 @@ int flappy_bird()
 				printf("   <<");
 			else
 				printf("     ");
+#ifdef FALLBACKASCII
+			printf("   %c", char(186));
+#else
+			printf("   ║");
+#endif
 			printf("   %c", char(186));
 			puts("");
 		}
+#ifdef FALLBACKASCII
 		printf("                       %c                            %c\n", char(186), char(186));
+#else
+		printf("                       ║                            ║\n");
+#endif
 		printf("                       ");
 		for (int i = 0; i < 30; i++)
 		{
 			if (i == 0)
+#ifdef FALLBACKASCII
 				printf("%c", char(200));
+#else
+				printf("╚");
+#endif
 			else if (i == 29)
+#ifdef FALLBACKASCII
 				printf("%c", char(188));
+#else
+				printf("╝");
+#endif
 			else
+#ifdef FALLBACKASCII
 				printf("%c", char(205));
+#else
+				printf("═");
+#endif
 		}
 		if (kbhit())
 		{
